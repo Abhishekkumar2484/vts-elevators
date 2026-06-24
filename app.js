@@ -12,7 +12,7 @@ const UNITS = [
 ];
 
 const formFields = ['f-name', 'f-address', 'f-mobile', 'f-query'];
-const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform';
+const GOOGLE_FORM_URL = 'https://forms.gle/NhoWsyT5PyNg7Pma6';
 const AUTO_REFRESH_MS = 20000;
 
 async function fetchJson(path, options = {}) {

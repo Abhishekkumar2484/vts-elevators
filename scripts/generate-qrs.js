@@ -36,9 +36,11 @@ function download(url, dest) {
   console.log('Generating QR images into', outDir);
   for (const u of UNITS) {
     const filled = template.replace(/{UNIT_ID}/g, encodeURIComponent(u.id));
-    const chartUrl = `https://chart.googleapis.com/chart?cht=qr&chs=400x400&chl=${encodeURIComponent(filled)}`;
+    // Use qrserver API which reliably returns PNG for arbitrary URLs
+    const chartUrl = `https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=${encodeURIComponent(filled)}`;
     const outPath = path.join(outDir, `${u.id}.png`);
     try {
+      console.log('Fetching QR for', u.id, '->', chartUrl);
       await download(chartUrl, outPath);
       console.log('Saved', outPath);
     } catch (err) {

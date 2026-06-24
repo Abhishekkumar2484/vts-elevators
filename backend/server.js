@@ -117,7 +117,9 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok' });
 });
 
-app.listen(PORT, () => {
-  db.init();
-  console.log(`Express server listening on http://localhost:${PORT}`);
-});
+(async () => {
+  await db.init();
+  app.listen(PORT, () => {
+    console.log(`Express server listening on http://localhost:${PORT}`);
+  });
+})();

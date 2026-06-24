@@ -60,7 +60,9 @@ async function updateQueryOnServer(id, body) {
 
 function openQrForm() {
   if (!GOOGLE_FORM_URL || GOOGLE_FORM_URL.includes('your-google-form-url') || GOOGLE_FORM_URL.includes('YOUR_FORM_ID')) {
-    showToast('Google Form URL is not configured. Open app.js and add your actual form URL.', 'error');
+    // If no external Google Form is set, fallback to the built-in submit page
+    switchPage('submit');
+    showToast('No external Google Form configured — using internal form.', 'info');
     return;
   }
   window.open(GOOGLE_FORM_URL, '_blank');
